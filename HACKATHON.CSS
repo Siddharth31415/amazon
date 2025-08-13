@@ -1,11 +1,13 @@
 .boss{
-background-color: black;
+background-color:skyblue;
+padding: 0%;
+margin: 0%;
 }
 .but1{
     margin-left: 15%;
         font-size: 20px;
-    color: aqua;
-    background-color: black;
+    color: black;
+    background-color:skyblue;
     border: none;
     border-width:5px;
     padding: 20px;
@@ -14,18 +16,17 @@ background-color: black;
 .but1:hover{
     margin-left: 15%;
         font-size: 20px;
-    color: aqua;
-    background-color: black;
+    color: grey;
+    background-color: blue;
     border: none;
-    border-width:5px;
     padding: 20px;
     
 }
 .but{
     margin-left: 2%;
         font-size: 20px;
-    color: aqua;
-    background-color: black;
+    color: black;
+    background-color:skyblue;
     border: none;
     border-radius: 10%;
     padding: 20px;
@@ -35,8 +36,8 @@ background-color: black;
 .but:hover{
     margin-left: 2%;
         font-size: 20px;
-    color: aqua;
-    background-color: rgb(155, 133, 133);
+    color: black;
+    background-color: blue;
     border: none;
      border-radius: 10%;
      padding: 20px;
@@ -47,14 +48,15 @@ background-color: black;
     margin-left: 3%;
     margin-top: 0.5%;
     font-size: 45px;
-    color: aqua;
-    background-color: black;
+    color: gra;
+    background-color: skyblue;
     border: none;
+   font-family: Open Sans;
     
 }
 .top{
-    background-color: black;
-    border-color: grey;
+   
+    border-color: black;
 }
 .slider {
   width: 100%;
@@ -63,7 +65,7 @@ background-color: black;
   
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  
 }
 
 .slides {
@@ -90,8 +92,10 @@ background-color: black;
   100% { margin-left: 0%; }
 }
 .home{
-    background-color: black;
+    background-image: url('slider\ 2.png');
     width: 100%;
+    height: 370px;
+    
     
     
 
@@ -104,41 +108,42 @@ background-color: black;
   border-radius: 6px;
   outline: none;
   transition: border-color 0.3s;
-  background-color: rgb(255, 255, 255);
+  background-color:white;
   height: 20px;
 }
 .para{
     margin-left: 35%;
-    color: aqua;
+    color: black;
     font-size: 50px;
 }
 .para1{
     margin-left: 40%;
-    color: aqua;
+    color: black;
     font-size: 50px;
+    margin-bottom: 5%;
 }
 .name{
 margin-left: 10%;
-color: aqua;
-background-color: black;
+color: black;
+
 border: none;
 font-size: 20px;
 
 }
 .phone{
 margin-left: 7%;
-color: aqua;
-background-color: black;
+color: black;
+background-color: white;
 border: none;
 font-size: 20px;
 }
 .email{
 margin-left: 7%;
-color: aqua;
-background-color: black;
+color: black;
+background-color: white;
 border: none;
 font-size: 20px;
 }
 .schedule{
-    
+
 }
