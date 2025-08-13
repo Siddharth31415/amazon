@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reuth Hospital — Care, Clarity, Comfort</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg1: #0f172a; /* slate-900 */
+        --bg2: #111827cc; /* translucent */
+        --card: #0b1324aa; /* glassy card */
+        --muted: #9aa3b2;
+        --text: #e6e9f0;
+        --accent: #7c3aed; /* violet */
+        --accent-2: #06b6d4; /* cyan */
+        --good: #22c55e; /* green */
+        --warn: #f59e0b; /* amber */
+        --danger: #ef4444; /* red */
+        --glow: 0 10px 30px rgba(124, 58, 237, 0.35),
+          0 2px 10px rgba(6, 182, 212, 0.25);
+        --radius: 16px;
+        --radius-sm: 12px;
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        --border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* Base reset */
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: Poppins, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol";
+        color: var(--text);
+        background: radial-gradient(
+            1200px 800px at 80% -10%,
+            rgba(124, 58, 237, 0.25),
+            transparent 60%
+          ),
+          radial-gradient(
+            1000px 700px at -10% 20%,
+            rgba(6, 182, 212, 0.2),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #0b1023 0%, #0a0f1e 100%);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Floating ambient blobs */
+      .blob {
+        position: fixed;
+        inset: auto;
+        filter: blur(80px);
+        opacity: 0.5;
+        z-index: -2;
+        animation: float 16s ease-in-out infinite;
+      }
+      .blob.violet {
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #7c3aed55,
+          transparent 60%
+        );
+        top: -80px;
+        right: -120px;
+      }
+      .blob.cyan {
+        width: 360px;
+        height: 360px;
+        background: radial-gradient(
+          circle at 70% 70%,
+          #06b6d455,
+          transparent 60%
+        );
+        bottom: -100px;
+        left: -80px;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) scale(1);
+        }
+        50% {
+          transform: translateY(-20px) translateX(10px) scale(1.05);
+        }
+      }
+
+      /* Top nav */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: saturate(140%) blur(14px);
+        background: linear-gradient(
+          180deg,
+          rgba(16, 24, 40, 0.65),
+          rgba(16, 24, 40, 0.35)
+        );
+        border-bottom: var(--border);
+      }
+      .nav .wrap {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 14px 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--text);
+      }
+      .badge {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: conic-gradient(
+          from 180deg at 50% 50%,
+          #7c3aed,
+          #06b6d4,
+          #7c3aed
+        );
+        box-shadow: var(--glow);
+      }
+      .brand b {
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+      .nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 12px;
+        border-radius: 10px;
+        transition: 0.25s ease;
+      }
+      .nav a:hover,
+      .nav a:focus {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        outline: none;
+      }
+      .spacer {
+        flex: 1;
+      }
+
+      /* Hero */
+      .hero {
+        max-width: 1200px;
+        margin: 42px auto 18px;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 24px;
+      }
+      .hero .panel {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.03)
+        );
+        border: var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero h1 {
+        margin: 0 0 10px;
+        font-size: clamp(28px, 4.6vw, 44px);
+        line-height: 1.15;
+      }
+      .hero p.lead {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+      .ribbon {
+        position: absolute;
+        inset: auto;
+        top: 18px;
+        right: 18px;
+        font-size: 12px;
+        letter-spacing: 0.6px;
+        background: linear-gradient(
+          90deg,
+          rgba(124, 58, 237, 0.25),
+          rgba(6, 182, 212, 0.25)
+        );
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: var(--border);
+      }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #7c3aed, #06b6d4);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: var(--glow);
+        transition: transform 0.18s ease, filter 0.18s ease;
+      }
+      .cta:hover {
+        transform: translateY(-2px);
+        filter: saturate(1.1);
+      }
+      .hero .stats {
+        display: flex;
+        gap: 16px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: #cbd5e1;
+        font-size: 13px;
+      }
+      .pulse {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--good);
+        margin-right: 8px;
+        position: relative;
+      }
+      .pulse:after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 2px solid rgba(34, 197, 94, 0.55);
+        animation: pulse 1.6s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(0.6);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1.6);
+          opacity: 0;
+        }
+      }
+
+      /* Section wrapper */
+      .container {
+        max-width: 1200px;
+        margin: 10px auto 80px;
+        padding: 0 20px;
+        display: grid;
+        gap: 22px;
+      }
+      section.card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.03)
+        );
+        border: var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 22px;
+        scroll-margin-top: 90px;
+        position: relative;
+        overflow: hidden;
+        animation: rise 0.8s ease both;
+      }
+      @keyframes rise {
+        from {
+          transform: translateY(14px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      section.card:before {
+        content: "";
+        position: absolute;
+        inset: auto;
+        top: -120px;
+        right: -120px;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(124, 58, 237, 0.18),
+          transparent 60%
+        );
+        filter: blur(10px);
+      }
+      h2.title {
+        margin: 0 0 14px;
+        font-size: clamp(20px, 3vw, 26px);
+      }
+      .subtitle {
+        color: var(--muted);
+        margin: -6px 0 18px;
+        font-size: 14px;
+      }
+
+      /* Forms */
+      form {
+        display: grid;
+        gap: 14px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+      }
+      .col-6 {
+        grid-column: span 6;
+      }
+      .col-4 {
+        grid-column: span 4;
+      }
+      .col-12 {
+        grid-column: span 12;
+      }
+      label {
+        font-weight: 600;
+        font-size: 14px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(15, 23, 42, 0.6);
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: #94a3b8;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #8b5cf6;
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.22);
+      }
+      button {
+        border: 0;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        justify-self: start;
+        background: linear-gradient(90deg, #06b6d4, #7c3aed);
+        color: white;
+        box-shadow: var(--glow);
+        transition: transform 0.18s ease, filter 0.18s ease;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        filter: saturate(1.05);
+      }
+
+      /* Doctor directory */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+      }
+      .doc-card {
+        grid-column: span 4;
+        border: var(--border);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 16px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .doc-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--glow);
+      }
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+      }
+      .doc-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .status {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #a3e635;
+        font-size: 12px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+      }
+      .dot.off {
+        background: #ef4444;
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+      }
+      .spec {
+        color: #cbd5e1;
+        font-size: 13px;
+      }
+      .slots {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .slot {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: var(--border);
+        color: #cbd5e1;
+      }
+      .mini {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .mini .tag {
+        font-size: 11px;
+        color: #a5b4fc;
+        background: rgba(124, 58, 237, 0.18);
+        border: 1px solid rgba(124, 58, 237, 0.3);
+        padding: 6px 8px;
+        border-radius: 999px;
+      }
+
+      /* Stars (CSS-only) */
+      .stars {
+        display: inline-flex;
+        flex-direction: row-reverse;
+      }
+      .stars input {
+        display: none;
+      }
+      .stars label {
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        background: linear-gradient(180deg, #94a3b8, #64748b);
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="black"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.788 1.401 8.168L12 18.897l-7.335 3.87 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>')
+          center/contain no-repeat;
+        mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="black"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.788 1.401 8.168L12 18.897l-7.335 3.87 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>')
+          center/contain no-repeat;
+        transition: filter 0.18s ease;
+        margin-left: 4px;
+      }
+      .stars label:hover,
+      .stars label:hover ~ label {
+        filter: saturate(1.3) brightness(1.1);
+      }
+      .stars input:checked ~ label {
+        background: linear-gradient(180deg, #fde68a, #f59e0b);
+      }
+
+      /* Feedback feed (static demo) */
+      .feed {
+        display: grid;
+        gap: 10px;
+      }
+      .feed .item {
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: var(--border);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .item .meta {
+        font-size: 12px;
+        color: #9fb0c9;
+        margin-bottom: 6px;
+      }
+
+      /* Patient dashboard */
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+      }
+      .kpi {
+        grid-column: span 4;
+        padding: 16px;
+        border-radius: 14px;
+        border: var(--border);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .kpi h4 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: #cbd5e1;
+      }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, #22c55e, #06b6d4);
+        width: 68%;
+        animation: load 1.4s ease both;
+      }
+      @keyframes load {
+        from {
+          width: 0;
+        }
+        to {
+          width: var(--to, 68%);
+        }
+      }
+
+      .timeline {
+        border-left: 2px dashed rgba(255, 255, 255, 0.15);
+        margin-left: 8px;
+        padding-left: 14px;
+        display: grid;
+        gap: 14px;
+      }
+      .t {
+        position: relative;
+      }
+      .t:before {
+        content: "";
+        position: absolute;
+        left: -21px;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #7c3aed;
+        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+      }
+
+      .meds {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 8px;
+      }
+      .pill {
+        grid-column: span 4;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 13px;
+        color: #cbd5e1;
+      }
+
+      /* Backup doctor demo (CSS toggle) */
+      .toggle {
+        appearance: none;
+        width: 44px;
+        height: 24px;
+        border-radius: 999px;
+        position: relative;
+        background: #111827;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        cursor: pointer;
+        outline: none;
+        transition: 0.2s ease;
+      }
+      .toggle:before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #cbd5e1, #94a3b8);
+        transition: 0.2s ease;
+      }
+      .toggle:checked {
+        background: #065f46;
+      }
+      .toggle:checked:before {
+        left: 22px;
+        background: linear-gradient(180deg, #34d399, #10b981);
+      }
+      .backup {
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 12px;
+        border: var(--border);
+        background: rgba(34, 197, 94, 0.08);
+        color: #d1fae5;
+        display: none;
+      }
+      #noDoc:checked ~ .backup {
+        display: block;
+      }
+      .note {
+        font-size: 12px;
+        color: #a5b4fc;
+      }
+
+      /* Footer */
+      footer {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #8ea0bb;
+        font-size: 13px;
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .doc-card {
+          grid-column: span 6;
+        }
+        .kpi {
+          grid-column: span 6;
+        }
+      }
+      @media (max-width: 640px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+        .col-6,
+        .col-4,
+        .col-12 {
+          grid-column: 1/-1;
+        }
+        .doc-card {
+          grid-column: span 12;
+        }
+        .kpi {
+          grid-column: span 12;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ambient blobs -->
+    <div class="blob violet"></div>
+    <div class="blob cyan"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="Reuth Hospital Home">
+          <span class="badge"></span>
+          <b>Reuth Hospital</b>
+        </a>
+        <a href="#consult">Consult</a>
+        <a href="#doctors">Doctors</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#reviews">Staff Reviews</a>
+        <a href="#patient">Patient Portal</a>
+        <a href="#backup">Backup Doctor</a>
+        <div class="spacer"></div>
+        <a class="cta" href="#consult">Book a consult →</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="top" class="hero">
+      <div class="panel">
+        <span class="ribbon">Modern care • Human touch</span>
+        <h1>Compassionate care with modern clarity</h1>
+        <p class="lead">
+          Video consultations, real‑time availability, transparent staff
+          reviews, and a clear daily view of your treatment progress.
+        </p>
+        <a
+          class="cta"
+          href="#consult"
+          aria-label="Schedule a video consultation"
+          >Schedule a video call</a
+        >
+        <div class="stats">
+          <span class="chip"
+            ><span class="pulse"></span> Live availability</span
+          >
+          <span class="chip">Secure by design</span>
+          <span class="chip">CSS‑only prototype</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top: 0">Today’s highlights</h3>
+        <div class="kpis" style="margin-top: 8px">
+          <div class="kpi">
+            <h4>Bed occupancy</h4>
+            <div class="bar"><span style="--to: 74%"></span></div>
+            <div class="note">74% utilized</div>
+          </div>
+          <div class="kpi">
+            <h4>Avg. wait (video)</h4>
+            <div class="bar"><span style="--to: 38%"></span></div>
+            <div class="note">~6 min</div>
+          </div>
+          <div class="kpi">
+            <h4>Patient satisfaction</h4>
+            <div class="bar"><span style="--to: 92%"></span></div>
+            <div class="note">4.6 / 5</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- 1. Schedule a video call -->
+      <section id="consult" class="card">
+        <h2 class="title">Schedule a video consultation</h2>
+        <p class="subtitle">
+          Choose your doctor, time, and preferred platform. You’ll receive
+          joining details after confirmation.
+        </p>
+        <form
+          action="#"
+          method="post"
+          aria-label="Video consultation scheduler"
+        >
+          <div class="row">
+            <div class="col-6">
+              <label for="doctor">Doctor</label>
+              <select id="doctor" name="doctor" required>
+                <option value="" disabled selected>Select a doctor</option>
+                <option>Dr. A. Mehra — Cardiology</option>
+                <option>Dr. B. Singh — Pediatrics</option>
+                <option>Dr. C. Rao — Neurology</option>
+                <option>Dr. D. Kaur — Orthopedics</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="datetime">Date & time</label>
+              <input
+                id="datetime"
+                name="datetime"
+                type="datetime-local"
+                required
+              />
+            </div>
+            <div class="col-6">
+              <label for="platform">Video platform</label>
+              <select id="platform" name="platform" required>
+                <option>Zoom</option>
+                <option>Google Meet</option>
+                <option>Microsoft Teams</option>
+                <option>In‑browser (WebRTC)</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="reason">Reason (optional)</label>
+              <input
+                id="reason"
+                name="reason"
+                type="text"
+                placeholder="Brief description"
+              />
+            </div>
+            <div class="col-12">
+              <label for="notes">Notes for the doctor</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                placeholder="Symptoms, prior tests, medications..."
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit">Confirm appointment</button>
+        </form>
+      </section>
+
+      <!-- 2. Doctor directory + availability -->
+      <section id="doctors" class="card">
+        <h2 class="title">Our doctors and availability</h2>
+        <p class="subtitle">
+          Real people, real expertise. Pick a time that fits your day.
+        </p>
+
+        <div class="grid" role="list">
+          <!-- Doctor card -->
+          <article class="doc-card" role="listitem">
+            <div class="doc-head">
+              <div class="avatar" aria-hidden="true">AM</div>
+              <div>
+                <div><b>Dr. A. Mehra</b></div>
+                <div class="spec">Cardiology</div>
+              </div>
+              <div class="status"><span class="dot"></span> Available</div>
+            </div>
+            <div class="slots">
+              <span class="slot">10:00</span><span class="slot">11:30</span
+              ><span class="slot">13:00</span><span class="slot">15:30</span>
+            </div>
+            <div class="mini">
+              <span class="tag">11 yrs exp</span>
+              <span class="tag">Hindi • English</span>
+            </div>
+          </article>
+
+          <article class="doc-card" role="listitem">
+            <div class="doc-head">
+              <div class="avatar">BS</div>
+              <div>
+                <div><b>Dr. B. Singh</b></div>
+                <div class="spec">Pediatrics</div>
+              </div>
+              <div class="status" style="color: #fca5a5">
+                <span class="dot off"></span> Away
+              </div>
+            </div>
+            <div class="slots">
+              <span class="slot">16:00</span><span class="slot">17:15</span
+              ><span class="slot">19:45</span>
+            </div>
+            <div class="mini">
+              <span class="tag">8 yrs exp</span>
+              <span class="tag">Punjabi • English</span>
+            </div>
+          </article>
+
+          <article class="doc-card" role="listitem">
+            <div class="doc-head">
+              <div class="avatar">CR</div>
+              <div>
+                <div><b>Dr. C. Rao</b></div>
+                <div class="spec">Neurology</div>
+              </div>
+              <div class="status"><span class="dot"></span> Available</div>
+            </div>
+            <div class="slots">
+              <span class="slot">09:30</span><span class="slot">12:00</span
+              ><span class="slot">14:15</span><span class="slot">18:40</span>
+            </div>
+            <div class="mini">
+              <span class="tag">14 yrs exp</span>
+              <span class="tag">English</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3. Patient feedback -->
+      <section id="feedback" class="card">
+        <h2 class="title">Share your experience</h2>
+        <p class="subtitle">
+          Your feedback helps us improve care for everyone.
+        </p>
+        <form action="#" method="post">
+          <div class="row">
+            <div class="col-6">
+              <label for="fname">Full name</label>
+              <input
+                id="fname"
+                name="fname"
+                type="text"
+                placeholder="Your name"
+              />
+            </div>
+            <div class="col-6">
+              <label for="visit">Visited department</label>
+              <select id="visit" name="visit">
+                <option>Cardiology</option>
+                <option>Pediatrics</option>
+                <option>Neurology</option>
+                <option>Orthopedics</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="comment">Feedback</label>
+              <textarea
+                id="comment"
+                name="comment"
+                rows="4"
+                placeholder="Tell us what went well and what could be better"
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit">Submit feedback</button>
+        </form>
+
+        <div class="feed" style="margin-top: 16px">
+          <div class="item">
+            <div class="meta">Ananya • Cardiology • 2 days ago</div>
+            Great care and quick video consult. The doctor explained everything
+            clearly.
+          </div>
+          <div class="item">
+            <div class="meta">Rahul • Pediatrics • last week</div>
+            Smooth experience. Friendly staff and minimal wait.
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Weekly staff reviews (with per-dimension ratings) -->
+      <section id="reviews" class="card">
+        <h2 class="title">Weekly staff reviews</h2>
+        <p class="subtitle">
+          Rate our staff on punctuality, politeness, bedside manner, and
+          communication.
+        </p>
+
+        <form action="#" method="post">
+          <div class="row">
+            <div class="col-6">
+              <label for="staff">Staff member</label>
+              <select id="staff" name="staff">
+                <option>Nurse R. Kapoor</option>
+                <option>Reception A. Sharma</option>
+                <option>Attendant V. Gill</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="week">Week of</label>
+              <input id="week" name="week" type="date" />
+            </div>
+
+            <!-- Ratings -->
+            <div class="col-12">
+              <label>Punctuality</label>
+              <div class="stars">
+                <input type="radio" id="p5" name="punctuality" /><label
+                  for="p5"
+                ></label>
+                <input type="radio" id="p4" name="punctuality" /><label
+                  for="p4"
+                ></label>
+                <input type="radio" id="p3" name="punctuality" /><label
+                  for="p3"
+                ></label>
+                <input type="radio" id="p2" name="punctuality" /><label
+                  for="p2"
+                ></label>
+                <input type="radio" id="p1" name="punctuality" /><label
+                  for="p1"
+                ></label>
+              </div>
+            </div>
+            <div class="col-12">
+              <label>Politeness</label>
+              <div class="stars">
+                <input type="radio" id="po5" name="politeness" /><label
+                  for="po5"
+                ></label>
+                <input type="radio" id="po4" name="politeness" /><label
+                  for="po4"
+                ></label>
+                <input type="radio" id="po3" name="politeness" /><label
+                  for="po3"
+                ></label>
+                <input type="radio" id="po2" name="politeness" /><label
+                  for="po2"
+                ></label>
+                <input type="radio" id="po1" name="politeness" /><label
+                  for="po1"
+                ></label>
+              </div>
+            </div>
+            <div class="col-12">
+              <label>Bedside manner</label>
+              <div class="stars">
+                <input type="radio" id="b5" name="bedside" /><label
+                  for="b5"
+                ></label>
+                <input type="radio" id="b4" name="bedside" /><label
+                  for="b4"
+                ></label>
+                <input type="radio" id="b3" name="bedside" /><label
+                  for="b3"
+                ></label>
+                <input type="radio" id="b2" name="bedside" /><label
+                  for="b2"
+                ></label>
+                <input type="radio" id="b1" name="bedside" /><label
+                  for="b1"
+                ></label>
+              </div>
+            </div>
+            <div class="col-12">
+              <label>Communication</label>
+              <div class="stars">
+                <input type="radio" id="c5" name="comm" /><label
+                  for="c5"
+                ></label>
+                <input type="radio" id="c4" name="comm" /><label
+                  for="c4"
+                ></label>
+                <input type="radio" id="c3" name="comm" /><label
+                  for="c3"
+                ></label>
+                <input type="radio" id="c2" name="comm" /><label
+                  for="c2"
+                ></label>
+                <input type="radio" id="c1" name="comm" /><label
+                  for="c1"
+                ></label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="rnote">Comments (optional)</label>
+              <textarea
+                id="rnote"
+                name="rnote"
+                rows="3"
+                placeholder="Share specifics to help us coach and reward staff"
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit">Submit review</button>
+        </form>
+      </section>
+
+      <!-- 5. Patient dashboard: daily progress, meds, treatments -->
+      <section id="patient" class="card">
+        <h2 class="title">Patient portal</h2>
+        <p class="subtitle">
+          A clear, day‑by‑day view of progress, medications, and treatment
+          explanations.
+        </p>
+
+        <div class="kpis">
+          <div class="kpi">
+            <h4>Recovery progress</h4>
+            <div class="bar"><span style="--to: 72%"></span></div>
+            <div class="note">72% towards discharge goals</div>
+          </div>
+          <div class="kpi">
+            <h4>Pain management</h4>
+            <div class="bar">
+              <span
+                style="
+                  --to: 40%;
+                  background: linear-gradient(90deg, #f59e0b, #f97316);
+                "
+              ></span>
+            </div>
+            <div class="note">Moderate — improving</div>
+          </div>
+          <div class="kpi">
+            <h4>Hydration</h4>
+            <div class="bar">
+              <span
+                style="
+                  --to: 88%;
+                  background: linear-gradient(90deg, #06b6d4, #22c55e);
+                "
+              ></span>
+            </div>
+            <div class="note">On track</div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 14px">
+          <div class="col-6">
+            <h3 style="margin: 0 0 8px; font-size: 16px">Daily timeline</h3>
+            <div class="timeline">
+              <div class="t"><b>08:00</b> — Vital checks. BP stable.</div>
+              <div class="t">
+                <b>10:30</b> — Physio session. Mobility improved.
+              </div>
+              <div class="t">
+                <b>13:00</b> — Medication round. No side effects.
+              </div>
+              <div class="t">
+                <b>17:15</b> — Doctor consult. Treatment plan updated.
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <h3 style="margin: 0 0 8px; font-size: 16px">Medicines</h3>
+            <div class="meds">
+              <span class="pill">Paracetamol 500mg — 2× daily</span>
+              <span class="pill">Amoxicillin 250mg — 3× daily</span>
+              <span class="pill">Vitamin C 1000mg — 1× daily</span>
+            </div>
+
+            <details style="margin-top: 12px">
+              <summary style="cursor: pointer">
+                Treatment explanation — current plan
+              </summary>
+              <div class="item" style="margin-top: 8px">
+                Combination therapy focusing on infection control and pain
+                management, with physiotherapy for mobility and breathing
+                exercises to support recovery.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Backup doctor provision (CSS-only simulated logic) -->
+      <section id="backup" class="card">
+        <h2 class="title">Backup doctor provision</h2>
+        <p class="subtitle">
+          If your chosen doctor is unavailable, we will auto‑assign a suitable
+          backup.
+        </p>
+
+        <label style="display: flex; align-items: center; gap: 12px">
+          <input
+            id="noDoc"
+            class="toggle"
+            type="checkbox"
+            role="switch"
+            aria-checked="false"
+          />
+          <span>Simulate “no doctor available”</span>
+        </label>
+
+        <div class="backup">
+          <b>Assigned backup:</b> Dr. E. Nanda — General Medicine •
+          <span style="color: #86efac">Available now</span><br />
+          Matches your selected time and specialty preferences. You’ll receive
+          updated video link automatically.
+        </div>
+
+        <div class="note" style="margin-top: 10px">
+          Note: This is a CSS‑only prototype. Actual auto‑assignment runs on
+          backend logic.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © Reuth Hospital — Prototype UI. Forms are for demonstration only (HTML +
+      CSS, no JavaScript).
+    </footer>
+  </body>
+</html>
