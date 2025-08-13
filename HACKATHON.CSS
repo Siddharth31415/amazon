@@ -1,149 +1,376 @@
-.boss{
-background-color:skyblue;
-padding: 0%;
-margin: 0%;
+/* ---------- Base & variables ---------- */
+:root {
+  --brand: #0a6cff;
+  --brand-dark: #084fc0;
+  --bg: #e6f3ff; /* gentler than pure skyblue */
+  --text: #0d1b2a;
+  --muted: #6b7280;
+  --white: #ffffff;
+  --card: #ffffff;
+  --ring: #99c2ff;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
-.but1{
-    margin-left: 15%;
-        font-size: 20px;
-    color: black;
-    background-color:skyblue;
-    border: none;
-    border-width:5px;
-    padding: 20px;
-    
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-.but1:hover{
-    margin-left: 15%;
-        font-size: 20px;
-    color: grey;
-    background-color: blue;
-    border: none;
-    padding: 20px;
-    
+
+html,
+body {
+  height: 100%;
 }
-.but{
-    margin-left: 2%;
-        font-size: 20px;
-    color: black;
-    background-color:skyblue;
-    border: none;
-    border-radius: 10%;
-    padding: 20px;
-    
-    
+
+body.boss {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji", sans-serif;
+  line-height: 1.5;
 }
-.but:hover{
-    margin-left: 2%;
-        font-size: 20px;
-    color: black;
-    background-color: blue;
-    border: none;
-     border-radius: 10%;
-     padding: 20px;
-     
-     
+
+/* Utility */
+.container {
+  max-width: 1120px;
+  padding: 0 16px;
+  margin: 0 auto;
 }
-.reuth{
-    margin-left: 3%;
-    margin-top: 0.5%;
-    font-size: 45px;
-    color: gra;
-    background-color: skyblue;
-    border: none;
-   font-family: Open Sans;
-    
+
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-.top{
-   
-    border-color: black;
+
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  background: var(--brand);
+  color: var(--white);
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transform: translateY(-200%);
 }
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ---------- Header & navigation ---------- */
+.header {
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.nav-toggle-bar {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  display: block;
+}
+
+.nav {
+  display: block;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: #eef4ff;
+  outline: none;
+}
+.nav-link.is-active {
+  color: var(--brand-dark);
+  background: #eaf2ff;
+  font-weight: 600;
+}
+
+/* ---------- Slider ---------- */
 .slider {
   width: 100%;
-  
-  height: 500px;
-  
+  aspect-ratio: 16 / 9;
+  max-height: 70vh;
   overflow: hidden;
-  border-radius: 10px;
-  
+  border-radius: var(--radius);
+  margin: 16px auto;
 }
 
 .slides {
   display: flex;
   width: 400%;
+  height: 100%;
   animation: slide 16s infinite;
 }
-
 .slides img {
   width: 100%;
-  height: 500px;
+  height: 100%;
   object-fit: cover;
 }
 
 @keyframes slide {
-  0% { margin-left: 0%; }
-  20% { margin-left: 0%; }
-  25% { margin-left: -100%; }
-  45% { margin-left: -100%; }
-  50% { margin-left: -200%; }
-  70% { margin-left: -200%; }
-  75% { margin-left: -300%; }
-  95% { margin-left: -300%; }
-  100% { margin-left: 0%; }
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-100%);
+  }
+  45% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-200%);
+  }
+  70% {
+    transform: translateX(-200%);
+  }
+  75% {
+    transform: translateX(-300%);
+  }
+  95% {
+    transform: translateX(-300%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
-.home{
-    background-image: url('slider\ 2.png');
-    width: 100%;
-    height: 370px;
-    
-    
-    
 
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .slides {
+    animation: none;
+  }
 }
-.textbox {
-  width: 300px;
-  padding: 10px 15px;
-  font-size: 16px;
-  
-  border-radius: 6px;
+
+/* ---------- Home/registration section ---------- */
+.home {
+  position: relative;
+  background-image: url("slider 2.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+  margin: 16px auto 32px;
+  min-height: 380px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.home .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 108, 255, 0.18),
+    rgba(13, 27, 42, 0.45)
+  );
+}
+
+.form-container {
+  position: relative;
+  width: 100%;
+}
+
+.intro {
+  text-align: center;
+  color: var(--white);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  margin-bottom: 12px;
+}
+.headline {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.subhead {
+  margin: 4px 0 0;
+  font-size: 1.1rem;
+  color: #f0f4ff;
+}
+
+/* Carded form */
+.registration-form {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(140%) blur(6px);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 20px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--white);
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
   outline: none;
-  transition: border-color 0.3s;
-  background-color:white;
-  height: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  height: 44px;
 }
-.para{
-    margin-left: 35%;
-    color: black;
-    font-size: 50px;
-}
-.para1{
-    margin-left: 40%;
-    color: black;
-    font-size: 50px;
-    margin-bottom: 5%;
-}
-.name{
-margin-left: 10%;
-color: black;
 
-border: none;
-font-size: 20px;
+input::placeholder {
+  color: var(--muted);
+}
 
+input:focus-visible {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px var(--ring);
 }
-.phone{
-margin-left: 7%;
-color: black;
-background-color: white;
-border: none;
-font-size: 20px;
-}
-.email{
-margin-left: 7%;
-color: black;
-background-color: white;
-border: none;
-font-size: 20px;
-}
-.schedule{
 
+/* Actions */
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.05s ease, background-color 0.2s;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: var(--white);
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--brand-dark);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 24px 0 40px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- Responsive nav (mobile) ---------- */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    inset: 64px 0 auto 0;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    padding: 8px 16px 16px;
+    display: none;
+  }
+  .nav[aria-expanded="true"],
+  .nav.open {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .slider {
+    margin-top: 8px;
+  }
+
+  .headline {
+    font-size: 1.8rem;
+  }
+  .registration-form {
+    padding: 16px;
+  }
+}
+
+/* ---------- Legacy class compatibility (kept so nothing breaks) ---------- */
+/* Original .top only had a border-color; it’s superseded by .header */
+.top {
+  border-color: black;
+}
+
+/* Original button styles upgraded to nav-link equivalents */
+.but1,
+.but,
+.reuth,
+.phone,
+.email,
+.name {
+  all: unset; /* remove old styles to avoid conflicts */
 }

@@ -1,60 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="HACKATHON.CSS">
-    <script src="amazon.js"></script>
-</head>
-<body class="boss"> 
-    <div class="top">
-        
-       <button class="reuth">Reuth Hospital </button>
-        <button class="but1">Home</button>
-        <button class="but">Doctors</button>
-        <button class="but">Video Consult</button>
-        <button class="but">Staff Review</button>
-        <button class="but">Feedback</button>
-        <button class="but">Dashboard</button>
-        <button class="but">Backup Doc</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reuth Hospital</title>
 
-    </div>
-      <div class="slider">
-    <div class="slides">
-    
-      <img src="slider 7.jpg" alt="" />
-      <img src="slider 2.png" alt="" />
-      <img src="slider 5.png" alt="" />
-      <img src="slider 4.jpg" alt="" />
-    </div>
+    <!-- CSS -->
+    <link rel="stylesheet" href="HACKATHON.css" />
+
+    <!-- JS (deferred so it doesn’t block rendering) -->
+    <script src="amazon.js" defer></script>
+    <script src="HACKATHON.JS" defer></script>
+  </head>
+  <body class="boss">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="header">
+      <div class="container nav-container">
+        <a href="#" class="brand" aria-label="Reuth Hospital home"
+          >Reuth Hospital</a
+        >
+
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+
+        <nav id="primary-nav" class="nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a class="nav-link is-active" href="#">Home</a></li>
+            <li><a class="nav-link" href="#">Doctors</a></li>
+            <li><a class="nav-link" href="#">Video Consult</a></li>
+            <li><a class="nav-link" href="#">Staff Review</a></li>
+            <li><a class="nav-link" href="#">Feedback</a></li>
+            <li><a class="nav-link" href="#">Dashboard</a></li>
+            <li><a class="nav-link" href="#">Backup Doc</a></li>
+          </ul>
+        </nav>
       </div>
-      
-        <div class="home">
-            <p class="para">Welcome to Reuth Hospital</p>
-            <p class="para1">Register Here</p>
-            
+    </header>
 
-           <button class="name">Name</button> 
+    <section class="slider" aria-label="Hospital image gallery">
+      <div class="slides">
+        <img src="slider 7.jpg" alt="Front view of Reuth Hospital building" />
+        <img src="slider 2.png" alt="Doctors discussing patient care" />
+        <img src="slider 5.png" alt="Modern diagnostic equipment" />
+        <img src="slider 4.jpg" alt="Nursing staff attending a patient" />
+      </div>
+    </section>
 
-        <input type="text" class="textbox" placeholder="Name" />
-    <button class="phone">Phone No </button>
-        <input type="text" class="textbox" placeholder="Phone No" />
-        <button class="email">Email Id </button>
-        <input type="text" class="textbox" placeholder="Email Id" />
+    <main id="main">
+      <section class="home">
+        <div class="overlay"></div>
+        <div class="container form-container">
+          <header class="intro">
+            <h1 class="headline">Welcome to Reuth Hospital</h1>
+            <p class="subhead">Register here</p>
+          </header>
 
+          <form class="registration-form" action="#" method="post" novalidate>
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your full name"
+                autocomplete="name"
+                required
+              />
+            </div>
 
+            <div class="form-field">
+              <label for="phone">Phone number</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="10-digit phone number"
+                inputmode="tel"
+                autocomplete="tel"
+                pattern="[0-9]{10}"
+                required
+              />
+            </div>
 
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
+      </section>
+    </main>
 
-
-
-
+    <footer class="footer">
+      <div class="container">
+        <small>&copy; 2025 Reuth Hospital</small>
       </div>
-
-
-
-<script src="HACKATHON.JS"></script>
-</body>
-
-
+    </footer>
+  </body>
+</html>
